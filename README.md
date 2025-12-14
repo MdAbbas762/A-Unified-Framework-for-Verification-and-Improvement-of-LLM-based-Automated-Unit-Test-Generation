@@ -84,8 +84,7 @@ We have completed:
 - Scope  
 - Motivation  
 - High-level solution outline  
-
-## 🔄 In Progress  
+  
 
 ### **3. Chapter 2 – Background Study**  
 In this phase we worked on **Systematic Literature Review**. Our SLR includes:  
@@ -107,8 +106,25 @@ We (team of 3) are currently working on:
 - Functional and non-functional requirements  
 - Domain model  
 - Requirement tables  
-- System constraints and assumptions  
+- System constraints and assumptions
 
+## 🔄 In Progress  
+
+### **5. Chapter 4 – Proposed Solution**
+- Software architecture  
+- Data modeling  
+  - Relational databases  
+  - NoSQL databases  
+- Workflow diagram for verification and improvement pipeline  
+- Third-party dependencies (LLMs, mutation testing tools, mocking libraries)  
+
+### **6. Chapter 5 – Software Development**
+- Coding standards  
+- Development environment  
+- Software description  
+- Implementation snippets mapped to user stories  
+  - Snippet 1 (User Story Implementation)  
+  - Snippet 2 (Additional Feature Implementation)  
 Once finalized, these will guide the architecture and prototype development.  
 
 ---  
