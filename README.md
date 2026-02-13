@@ -103,26 +103,95 @@ We (team of 3) are currently working on:
 - Functional and non-functional requirements  
 - Domain model  
 - Requirement tables  
-- System constraints and assumptions
+- System constraints and assumptions  
 
-### **5. Chapter 4 – Proposed Solution**
+### **5. Chapter 4 – Proposed Solution**  
 - Software architecture  
 - Data modeling  
   - Relational databases  
   - NoSQL databases  
 - Workflow diagram for verification and improvement pipeline  
-- Third-party dependencies (LLMs, mutation testing tools, mocking libraries) 
+- Third-party dependencies (LLMs, mutation testing tools, mocking libraries)  
+
+### **6. Chapter 5 – Software Development**  
+
+### 🔹 Phase I – Dependency Detector & Mock Preparation Module  
+
+As part of the initial development milestone, the foundational backend analysis pipeline has been implemented.  
+This module was designed and developed by **Muhammad Abbas** and establishes the framework’s capability to interpret source code and prepare structured mocking requirements for unit testing environments.  
+
+---
+**Following are the key features:**  
+
+#### 📂 Input Handling & Validation  
+
+- Accepts JavaScript source files or directories as input  
+- Validates provided paths before processing  
+- Filters unsupported or invalid file types  
+- Provides structured feedback for incorrect or empty inputs  
+
+---
+
+#### 🧠 Source Code Parsing  
+
+- Converts JavaScript source code into an Abstract Syntax Tree (AST)  
+- Enables structured representation of program logic  
+- Detects syntax-level errors before analysis begins  
+
+---
+
+#### 🔍 Function Extraction & Classification  
+
+- Detects functions defined within source files  
+- Identifies exported functions as primary testing targets  
+- Differentiates internal helper functions  
+- Extracts key metadata 
+
+---
+
+#### 🔗 Dependency Identification  
+
+- Detects imported modules inside source files  
+- Maps imported identifiers to their corresponding modules  
+- Determines which dependencies are actively used within exported functions  
+- Builds structured dependency relationships between functions and external modules  
+
+---
+
+#### 🧪 Mock Requirement Planning  
+
+- Analyzes dependency usage to determine which external modules require mocking  
+- Groups dependency interactions based on function-level usage  
+- Produces structured mock planning data  
+
+---
+
+#### 🧩 Jest Mock Code Preparation  
+
+- Converts mock planning data into Jest-compatible mock code fragments  
+- Generates reusable mock definitions based on detected dependencies  
+- Prepares mock structures that can support future automated test generation  
+
+---
+
+#### 📌 Current Development Scope  
+
+The implemented module focuses on **input analysis, dependency detection and mock preparation**. 
 
 ## 🔄 In Progress   
 
-### **6. Chapter 5 – Software Development**
-- Coding standards  
-- Development environment  
-- Software description  
-- Implementation snippets mapped to user stories  
-  - Snippet 1 (User Story Implementation)  
-  - Snippet 2 (Additional Feature Implementation)  
-Once finalized, these will guide the architecture and prototype development.  
+### **7. Chapter 5 – Software Development**  
+
+### 🔹Phase II – Final Report Generation Module  
+
+This module is currently under development and focuses on generating structured reports from the results of executed unit tests. The aim is to provide a clear and organized overview of test outcomes, while laying the groundwork for future analytical enhancements.  
+
+**Current Focus and Features in Progress:**  
+- Parsing Jest execution results to extract pass/fail counts  
+- Preparing preliminary summaries for total tests, passed, and failed  
+- Formatting error messages for easier review   
+- Generating a descriptive JSON report  
+- Establishing the foundation for future enhancements such as detailed metrics, failure categorization, and developer-friendly visual summaries  
 
 ---  
 
