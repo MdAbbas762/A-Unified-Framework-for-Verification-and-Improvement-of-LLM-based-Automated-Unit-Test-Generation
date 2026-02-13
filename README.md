@@ -85,7 +85,6 @@ We have completed:
 - Motivation  
 - High-level solution outline  
   
-
 ### **3. Chapter 2 – Background Study**  
 In this phase we worked on **Systematic Literature Review**. Our SLR includes:  
 - Review of 48 primary studies  
@@ -97,8 +96,6 @@ In this phase we worked on **Systematic Literature Review**. Our SLR includes:
 
 The SLR provides the foundation for our system requirements and design.  
 
----  
-
 ### **4. Chapter 3 – Requirements Specification & Analysis**  
 We (team of 3) are currently working on:  
 - Software Requirements Specification (SRS)  
@@ -108,15 +105,15 @@ We (team of 3) are currently working on:
 - Requirement tables  
 - System constraints and assumptions
 
-## 🔄 In Progress  
-
 ### **5. Chapter 4 – Proposed Solution**
 - Software architecture  
 - Data modeling  
   - Relational databases  
   - NoSQL databases  
 - Workflow diagram for verification and improvement pipeline  
-- Third-party dependencies (LLMs, mutation testing tools, mocking libraries)  
+- Third-party dependencies (LLMs, mutation testing tools, mocking libraries) 
+
+## 🔄 In Progress   
 
 ### **6. Chapter 5 – Software Development**
 - Coding standards  
