@@ -12,6 +12,7 @@ import { buildMockPlan } from "./core/mock/mockPlanBuilder.js";
 import { renderJestMocks } from "./core/mock/jestMockRenderer.js";
 import { renderJestTestTemplate } from "./core/testgen/jestTestTemplate.js";
 import { writeGeneratedTest } from "./core/testgen/testWriter.js";
+import { fillGeneratedTestsWithOllama } from "./core/llm/llmFillTests.js";
 
 // STEP 8 + Report imports
 import { runJest } from "./core/runner/jestRunner.js";
@@ -84,6 +85,8 @@ let processedFiles = 0;
 let skippedFiles = 0;
 let generatedTestFiles = 0;
 
+const llmContexts = [];
+
 // Process each discovered file through existing pipeline steps
 for (const filePathAbs of input.files) {
   const display = path.relative(process.cwd(), filePathAbs) || filePathAbs;
@@ -132,7 +135,7 @@ for (const filePathAbs of input.files) {
   if (!functions.length) {
     console.log(
       `⚠️ None of the detected functions are exported. Unit tests can only import exported functions.\n` +
-        `   👉 Export the function(s) or test a module that exports them (skipping this file).`
+      `   👉 Export the function(s) or test a module that exports them (skipping this file).`
     );
     continue;
   }
@@ -182,6 +185,15 @@ for (const filePathAbs of input.files) {
 
     const stem = safeTestStem(filePathAbs, fnName);
     const outFile = writeGeneratedTest(stem, testContent);
+    llmContexts.push({
+      fnName,
+      isAsync,
+      params,
+      // sourceFilePath: filePathAbs,
+      functionCode: fn.code,
+      testFilePath: outFile,
+    });
+
     generatedTestFiles++;
     console.log(`✅ Generated: ${outFile}`);
   }
@@ -202,6 +214,14 @@ if (generatedTestFiles === 0) {
   console.log("\n⚠️ No tests were generated, so Jest execution is skipped.\n");
   process.exitCode = 1;
 } else {
+  console.log("\n🤖 Sending generated tests to Ollama for improvement...\n");
+
+  const llmResult = await fillGeneratedTestsWithOllama({
+    contexts: llmContexts,
+    model: "qwen2.5:1.5b",
+  });
+  console.log(`\n✅ Ollama done. Improved: ${llmResult.updated}, Failed: ${llmResult.failed}\n`);
+
   console.log("\n🧪 Running Jest on generated tests...\n");
 
   const result = await runJest({ configPath: "jest.config.js" });
